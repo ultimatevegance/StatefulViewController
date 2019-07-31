@@ -23,7 +23,7 @@ class ViewController: UIViewController, StatefulViewController {
         
         // Setup placeholder views
         loadingView = LoadingView(frame: view.frame)
-        emptyView = EmptyView(frame: view.frame)
+        emptyView = DXYViewStatusView.init(status: .empty, descriptionSring: "侧耳侧二次侧", buttonTitle: "发顺丰对方水", placeholderImage: UIImage.init(named: "emptyData"))
         let failureView = ErrorView(frame: view.frame)
         failureView.tapGestureRecognizer.addTarget(self, action: #selector(refresh))
         errorView = failureView
@@ -47,18 +47,18 @@ class ViewController: UIViewController, StatefulViewController {
         // Fake network call
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(3 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
             // Success
-            self.dataArray = ["Merlot", "Sauvignon Blanc", "Blaufränkisch", "Pinot Nior"]
+//            self.dataArray = ["Merlot", "Sauvignon Blanc", "Blaufränkisch", "Pinot Nior"]
             self.tableView.reloadData()
-            self.endLoading(error: nil, completion: {
-                print("completion endLoading -> loadingState: \(self.currentState.rawValue)")
-            })
-            print("endLoading -> loadingState: \(self.lastState.rawValue)")
+//            self.endLoading(error: nil, completion: {
+//                print("completion endLoading -> loadingState: \(self.currentState.rawValue)")
+//            })
+//            print("endLoading -> loadingState: \(self.lastState.rawValue)")
             
             // Error
-            //self.endLoading(error: NSError(domain: "foo", code: -1, userInfo: nil))
+//            self.endLoading(error: NSError(domain: "foo", code: -1, userInfo: nil))
             
             // No Content
-            //self.endLoading(error: nil)
+            self.endLoading(error: nil)
             
             self.refreshControl.endRefreshing()
         }
@@ -73,12 +73,12 @@ extension ViewController {
         return dataArray.count > 0
     }
     
-    func handleErrorWhenContentAvailable(_ error: Error) {
-        let alertController = UIAlertController(title: "Ooops", message: "Something went wrong.", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
+//    func handleErrorWhenContentAvailable(_ error: Error) {
+//        let alertController = UIAlertController(title: "Ooops", message: "Something went wrong.", preferredStyle: .alert)
+//        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//        self.present(alertController, animated: true, completion: nil)
+//    }
+//
 }
 
 
